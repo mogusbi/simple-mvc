@@ -5,21 +5,15 @@ import * as csrf from 'csurf';
 import * as express from 'express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
-import {configure} from 'nunjucks';
 import {resolve} from 'path';
 import 'reflect-metadata';
 import {useExpressServer} from 'routing-controllers';
 
 const config: express.Application = express();
 
-configure(resolve(__dirname, '../views'), {
-  autoescape: true,
-  express: config,
-  watch: process.env.NODE_ENV === 'development'
-});
-
 config
-  .set('view engine', 'html')
+  .set('views', resolve(__dirname, '../views'))
+  .set('view engine', 'pug')
   .use(morgan('dev'))
   .use(compression())
   .use(helmet())

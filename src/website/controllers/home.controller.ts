@@ -6,7 +6,7 @@ export class HomeController {
   @Render('home/index')
   public index (): Object {
     return {
-      title: 'Home'
+      title: 'Home page'
     };
   }
 }

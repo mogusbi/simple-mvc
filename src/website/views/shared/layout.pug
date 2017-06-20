@@ -1,0 +1,31 @@
+doctype html
+html(dir='ltr' lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=Edge')
+    meta(name='HandheldFriendly' content='True')
+    meta(name='viewport' content='width=device-width,minimum-scale=1,initial-scale=1')
+    title #{title} - Simple MVC
+    link(href='/assets/styles/bootstrap.min.css' rel='stylesheet')
+    block head
+  body
+    div(class='navbar navbar-expand-sm navbar-light bg-faded mb-4')
+      h1(class='navbar-brand mb-0') Simple MVC
+      button(class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+        span(class='navbar-toggler-icon')
+      nav(id='navbarNav' class='collapse navbar-collapse')
+        ul(class='navbar-nav mr-auto')
+          li(class='nav-item')
+            a(class='nav-link' href='/') Home
+          li(class='nav-item')
+            a(class='nav-link' href='/about') About
+          li(class='nav-item')
+            a(class='nav-link' href='/contact') Contact
+    main(class='container')
+      block content
+      hr
+      footer
+        p &copy; #{new Date().getFullYear()} - Simple MVC
+    script(src='/assets/scripts/jquery.min.js')
+    script(src='/assets/scripts/popper.min.js')
+    script(src='/assets/scripts/bootstrap.min.js')
