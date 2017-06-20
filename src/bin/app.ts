@@ -12,16 +12,17 @@ import {useExpressServer} from 'routing-controllers';
 
 const config: express.Application = express();
 
-configure('views', {
+configure(resolve(__dirname, '../views'), {
   autoescape: true,
   express: config,
   watch: process.env.NODE_ENV === 'development'
 });
 
 config
+  .set('view engine', 'html')
   .use(morgan('dev'))
   .use(compression())
-  . use(helmet())
+  .use(helmet())
   .use(urlencoded({
     extended: false
   }))
@@ -29,11 +30,11 @@ config
   .use(csrf({
     cookie: true
   }))
-  .use(express.static(resolve('./wwwroot')));
+  .use(express.static(resolve(__dirname, '../wwwroot')));
 
 const app: express.Application = useExpressServer(config, {
   controllers: [
-    resolve('./controllers/*.ts')
+    resolve(__dirname, '../controllers/*.ts')
   ]
 });
 
