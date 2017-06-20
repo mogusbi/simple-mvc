@@ -4,7 +4,7 @@
   "description": "A very simple MVC website",
   "main": "bin/www",
   "scripts": {
-    "start": "nodemon --exec ts-node ./src/bin/www"
+    "start": "nodemon --exec ts-node ./src/website/bin/www"
   },
   "author": "Mo Gusbi",
   "license": "ISC",
