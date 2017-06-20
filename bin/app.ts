@@ -2,27 +2,23 @@ import {urlencoded} from 'body-parser';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
 import * as csrf from 'csurf';
-import {Application, static as staticRoot} from 'express';
+import * as express from 'express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
 import {configure} from 'nunjucks';
 import {resolve} from 'path';
 import 'reflect-metadata';
-import {createExpressServer} from 'routing-controllers';
+import {useExpressServer} from 'routing-controllers';
 
-const app: Application = createExpressServer({
-  controllers: [
-    resolve('./controllers/*.ts')
-  ]
-});
+const config: express.Application = express();
 
 configure('views', {
   autoescape: true,
-  express: app,
+  express: config,
   watch: process.env.NODE_ENV === 'development'
 });
 
-app
+config
   .use(morgan('dev'))
   .use(compression())
   . use(helmet())
@@ -33,6 +29,12 @@ app
   .use(csrf({
     cookie: true
   }))
-  .use(staticRoot(resolve('./wwwroot')));
+  .use(express.static(resolve('./wwwroot')));
+
+const app: express.Application = useExpressServer(config, {
+  controllers: [
+    resolve('./controllers/*.ts')
+  ]
+});
 
 export {app};

@@ -4,7 +4,7 @@ import {Controller, Get, Render} from 'routing-controllers';
 export class HomeController {
   @Get()
   @Render('home/index.html')
-  public getAll (): Object {
+  public index (): Object {
     return {
       title: 'Home'
     };
