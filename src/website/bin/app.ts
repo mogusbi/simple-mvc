@@ -28,7 +28,7 @@ config
 
 const app: express.Application = useExpressServer(config, {
   controllers: [
-    resolve(__dirname, '../controllers/*.ts')
+    resolve(__dirname, '../controllers/**/*.ts')
   ]
 });
 
